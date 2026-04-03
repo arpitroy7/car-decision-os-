@@ -46,7 +46,7 @@ Instead of raw specifications, it answers:
 CarDecisionOS functions as an autonomous decision agent:
 
 - Takes structured input (cars + priorities)  
-- Performs reasoning using AI (Groq LLaMA 3)  
+- Performs reasoning using AI (LLaMA 3.3 70B Versatile)  
 - Applies weighted decision logic  
 - Produces a final decision with explanation  
 
