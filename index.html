@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CarDecisionOS — AI Car Comparison</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="bg-grid" aria-hidden="true"></div>
+    <div class="bg-glow bg-glow--a" aria-hidden="true"></div>
+    <div class="bg-glow bg-glow--b" aria-hidden="true"></div>
+
+    <header class="nav">
+      <div class="nav__inner">
+        <a class="brand" href="#">
+          <span class="brand__mark">CarDecisionOS</span>
+        </a>
+        <p class="nav__tagline">AI-powered automotive intelligence</p>
+      </div>
+    </header>
+
+    <main class="main">
+      <section class="hero">
+        <p class="hero__eyebrow">Compare. Prioritize. Decide.</p>
+        <h1 class="hero__title">Choose Your Next Car with Confidence</h1>
+        <p class="hero__subtitle">
+          Enter two or three vehicles and dial in what matters—price, efficiency, safety, and more.
+          CarDecisionOS synthesizes a structured recommendation with transparent trade-offs.
+        </p>
+      </section>
+
+      <section class="panel" id="input-panel">
+        <div class="glass card card--input">
+          <div class="card__head">
+            <h2 class="card__title">Your comparison</h2>
+            <p class="card__hint">Be specific with year and trim for sharper results.</p>
+          </div>
+
+          <div class="fields">
+            <label class="field">
+              <span class="field__label">Car 1</span>
+              <input
+                type="text"
+                id="car1"
+                class="field__input"
+                placeholder="e.g. 2024 Toyota Camry XLE"
+                autocomplete="off"
+              />
+            </label>
+            <label class="field">
+              <span class="field__label">Car 2</span>
+              <input
+                type="text"
+                id="car2"
+                class="field__input"
+                placeholder="e.g. 2024 Honda Accord Touring"
+                autocomplete="off"
+              />
+            </label>
+            <label class="field field--optional">
+              <span class="field__label">Car 3 <span class="optional">optional</span></span>
+              <input
+                type="text"
+                id="car3"
+                class="field__input"
+                placeholder="e.g. 2024 Mazda6 Signature"
+                autocomplete="off"
+              />
+            </label>
+          </div>
+
+          <div class="priorities">
+            <h3 class="priorities__title">Your priorities</h3>
+            <p class="priorities__hint">Slide from 1 (low) to 10 (critical).</p>
+
+            <div class="slider-grid" id="sliders">
+              <div class="slider-row" data-key="price">
+                <div class="slider-row__top">
+                  <span class="slider-row__name">Price sensitivity</span>
+                  <span class="slider-row__val" data-value-for="price">5</span>
+                </div>
+                <input type="range" min="1" max="10" value="5" class="slider" aria-label="Price sensitivity" />
+              </div>
+              <div class="slider-row" data-key="mileage">
+                <div class="slider-row__top">
+                  <span class="slider-row__name">Mileage importance</span>
+                  <span class="slider-row__val" data-value-for="mileage">5</span>
+                </div>
+                <input type="range" min="1" max="10" value="5" class="slider" aria-label="Mileage importance" />
+              </div>
+              <div class="slider-row" data-key="power">
+                <div class="slider-row__top">
+                  <span class="slider-row__name">Power / performance</span>
+                  <span class="slider-row__val" data-value-for="power">5</span>
+                </div>
+                <input type="range" min="1" max="10" value="5" class="slider" aria-label="Power and performance" />
+              </div>
+              <div class="slider-row" data-key="features">
+                <div class="slider-row__top">
+                  <span class="slider-row__name">Features &amp; comfort</span>
+                  <span class="slider-row__val" data-value-for="features">5</span>
+                </div>
+                <input type="range" min="1" max="10" value="5" class="slider" aria-label="Features and comfort" />
+              </div>
+              <div class="slider-row" data-key="safety">
+                <div class="slider-row__top">
+                  <span class="slider-row__name">Safety</span>
+                  <span class="slider-row__val" data-value-for="safety">5</span>
+                </div>
+                <input type="range" min="1" max="10" value="5" class="slider" aria-label="Safety" />
+              </div>
+              <div class="slider-row" data-key="reliability">
+                <div class="slider-row__top">
+                  <span class="slider-row__name">Reliability</span>
+                  <span class="slider-row__val" data-value-for="reliability">5</span>
+                </div>
+                <input type="range" min="1" max="10" value="5" class="slider" aria-label="Reliability" />
+              </div>
+              <div class="slider-row" data-key="resale">
+                <div class="slider-row__top">
+                  <span class="slider-row__name">Resale value</span>
+                  <span class="slider-row__val" data-value-for="resale">5</span>
+                </div>
+                <input type="range" min="1" max="10" value="5" class="slider" aria-label="Resale value" />
+              </div>
+            </div>
+          </div>
+
+          <div class="actions">
+            <button type="button" class="btn btn--primary" id="analyze-btn">
+              <span>Analyze Decision</span>
+              <span class="btn__arrow" aria-hidden="true">→</span>
+            </button>
+            <p class="error" id="form-error" role="alert" hidden></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="loading-wrap" id="loading" hidden>
+        <div class="glass card card--loading">
+          <div class="spinner" aria-hidden="true"></div>
+          <p class="loading__text">Analyzing real-world car data...</p>
+        </div>
+      </section>
+
+      <section class="results" id="results" hidden>
+        <div class="results__inner results-animate">
+          <div class="glass card card--hero-result">
+            <div class="hero-result__badge">Recommended</div>
+            <h2 class="hero-result__car" id="best-car">—</h2>
+            <div class="confidence">
+              <div class="confidence__row">
+                <span class="confidence__label">Confidence</span>
+                <span class="confidence__pct" id="confidence-pct">0%</span>
+              </div>
+              <div class="confidence__track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="confidence-bar-wrap">
+                <div class="confidence__fill" id="confidence-fill"></div>
+              </div>
+            </div>
+            <p class="hero-result__reason" id="reason"></p>
+          </div>
+
+          <div class="insight-grid">
+            <article class="glass card card--insight">
+              <h3 class="insight__title">🧠 Why this wins</h3>
+              <ul class="insight__list" id="why-wins"></ul>
+            </article>
+            <article class="glass card card--insight">
+              <h3 class="insight__title">⚠ Trade-offs</h3>
+              <p class="insight__body" id="tradeoffs"></p>
+            </article>
+          </div>
+
+          <div class="tag-sections">
+            <div class="glass card card--tags">
+              <h3 class="tags__title">✔ Best for</h3>
+              <div class="tags tags--good" id="best-for"></div>
+            </div>
+            <div class="glass card card--tags">
+              <h3 class="tags__title">✖ Not ideal for</h3>
+              <div class="tags tags--bad" id="not-ideal"></div>
+            </div>
+          </div>
+
+          <div class="matrix">
+            <h3 class="matrix__heading">Comparison matrix</h3>
+            <div class="matrix__grid" id="matrix"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>CarDecisionOS · Decisions are informational; verify with test drives and local pricing.</p>
+    </footer>
+
+    <script src="script.js" type="module"></script>
+  </body>
+</html>
