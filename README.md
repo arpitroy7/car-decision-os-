@@ -46,7 +46,7 @@ Instead of raw specifications, it answers:
 CarDecisionOS functions as an autonomous decision agent:
 
 - Takes structured input (cars + priorities)  
-- Performs reasoning using AI (LLaMA 3.3 70B Versatile)  
+- Performs reasoning using AI (openai/gpt-oss-20b)  
 - Applies weighted decision logic  
 - Produces a final decision with explanation  
 
@@ -119,7 +119,7 @@ UI Rendering (Results + Insights + Matrix)
 |----------------|-------------------------------|----------------------------------|
 | Frontend       | HTML, CSS, JavaScript         | User interface                   |
 | Backend        | Vercel Serverless Functions   | API handling & logic             |
-| AI Engine      | Groq API (LLaMA 3.3 70B Versatile)            | Decision-making & reasoning      |
+| AI Engine      | Groq API (openai/gpt-oss-20b)            | Decision-making & reasoning      |
 | Deployment     | Vercel                        | Hosting & deployment             |
 | Version Control| Git & GitHub                  | Source code management           |
 
